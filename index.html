@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Chehab – Android Developer</title>
+  <meta name="description" content="Portfolio von Ali Chehab – Android-Entwickler mit Kotlin und Jetpack Compose.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-soft: #131a23;
+      --card: #161e29;
+      --border: #243041;
+      --text: #e6edf3;
+      --muted: #8b98a8;
+      --accent: #3ddc84;
+      --accent-dim: rgba(61, 220, 132, 0.12);
+      --radius: 14px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 800; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-btn { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: transform .15s, background .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #06210f; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 110px 0 90px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; top: -200px; right: -150px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(61,220,132,0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .tag {
+      display: inline-block; padding: 6px 12px; border-radius: 999px;
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 0.85rem; margin-bottom: 22px;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
+    .hero h1 .accent { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 620px; margin: 22px 0 34px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* Sections */
+    section { padding: 90px 0; }
+    section:nth-of-type(even) { background: var(--bg-soft); }
+    .section-label { color: var(--accent); font-size: 0.9rem; margin-bottom: 8px; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 40px; }
+
+    /* Über mich */
+    .about { display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: start; }
+    .photo {
+      width: 280px; height: 320px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--card);
+      overflow: hidden; position: relative;
+    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo .initials {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      font-size: 4rem; font-weight: 800; color: var(--accent);
+    }
+    .photo.no-img .initials { display: flex; }
+    .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 1.05rem; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 28px; }
+    .fact { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+    .fact .label { color: var(--muted); font-size: 0.8rem; }
+    .fact .value { font-weight: 600; margin-top: 2px; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .skill-group h3 { font-size: 1rem; margin-bottom: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 0.82rem; padding: 5px 11px; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    }
+
+    /* Projekte */
+    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+    .project {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px; display: flex; flex-direction: column;
+      transition: transform .2s, border-color .2s;
+    }
+    .project:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project.featured { grid-column: 1 / -1; background: linear-gradient(135deg, #17251f 0%, var(--card) 60%); }
+    .project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .project-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--accent-dim); color: var(--accent);
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+    }
+    .badge { font-size: 0.75rem; color: var(--accent); border: 1px solid var(--accent); padding: 3px 10px; border-radius: 999px; }
+    .project h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .project p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; flex-grow: 1; }
+    .project ul { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px 18px; }
+    .project ul li { margin-bottom: 4px; }
+    .project .chips { margin-bottom: 18px; }
+    .project-link { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
+    .project-link:hover { text-decoration: underline; }
+
+    /* Werdegang */
+    .timeline { border-left: 2px solid var(--border); margin-left: 8px; }
+    .step { position: relative; padding: 0 0 36px 32px; }
+    .step::before {
+      content: ""; position: absolute; left: -8px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent);
+    }
+    .step .when { color: var(--accent); font-size: 0.85rem; }
+    .step h3 { font-size: 1.1rem; margin: 2px 0 6px; }
+    .step p { color: var(--muted); }
+
+    /* Kontakt */
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); max-width: 560px; margin: -20px auto 34px; font-size: 1.05rem; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
+
+    /* Einblend-Animation */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Mobil */
+    @media (max-width: 780px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 14px 20px; }
+      .about { grid-template-columns: 1fr; gap: 32px; }
+      .photo { width: 220px; height: 260px; }
+      .projects { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0 60px; }
+      section { padding: 64px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo mono">ali<span>.dev</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menü öffnen">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Über mich</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projekte</a></li>
+        <li><a href="#path">Werdegang</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Startbereich -->
+  <header class="hero">
+    <div class="container">
+      <span class="tag mono">// offen für neue Herausforderungen</span>
+      <h1>Hi, ich bin Ali.<br><span class="accent">Android Developer.</span></h1>
+      <p>Ich entwickle native Android-Apps mit Kotlin und Jetpack Compose – von der Idee über die Architektur bis zur fertigen App mit Firebase, Room und REST-APIs.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Projekte ansehen →</a>
+        <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf (PDF)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Über mich -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label mono">01. Über mich</div>
+      <h2>Wer ich bin</h2>
+      <div class="about reveal">
+        <div class="photo" id="photo">
+          <img src="assets/foto.jpg" alt="Foto von Ali Chehab" onerror="this.remove(); document.getElementById('photo').classList.add('no-img');">
+          <div class="initials">AC</div>
+        </div>
+        <div class="about-text">
+          <p>Ich habe meine Weiterbildung zum <strong>Android-Entwickler am Syntax Institut</strong> abgeschlossen und dort in kurzer Zeit eine Menge Apps gebaut – von kleinen Wochenprojekten bis zu meinem Abschlussprojekt <strong>Tableo</strong>.</p>
+          <p>Mir ist wichtig, dass eine App nicht nur funktioniert, sondern sauber aufgebaut ist: <strong>MVVM, Repository-Pattern</strong>, typisierte Navigation und eine durchdachte Fehlerbehandlung gehören für mich dazu.</p>
+          <p>Am meisten Spaß macht mir, Ideen aus dem Alltag in Apps umzusetzen, die echten Nutzen haben – zum Beispiel weniger Stress für Restaurant-Personal oder weniger weggeworfene Lebensmittel zu Hause.</p>
+          <div class="facts">
+            <div class="fact"><div class="label">Fokus</div><div class="value">Android / Kotlin</div></div>
+            <div class="fact"><div class="label">UI</div><div class="value">Jetpack Compose</div></div>
+            <div class="fact"><div class="label">Sprachen</div><div class="value">Deutsch, Englisch</div></div>
+            <div class="fact"><div class="label">Status</div><div class="value">Verfügbar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label mono">02. Skills</div>
+      <h2>Womit ich arbeite</h2>
+      <div class="skills reveal">
+        <div class="skill-group">
+          <h3>Sprache & UI</h3>
+          <div class="chips">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
+            <span class="chip">Material 3</span><span class="chip">Compose Navigation</span>
+            <span class="chip">Coroutines & Flow</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Architektur</h3>
+          <div class="chips">
+            <span class="chip">MVVM</span><span class="chip">Repository-Pattern</span>
+            <span class="chip">Koin (DI)</span><span class="chip">Clean Code</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Daten & Backend</h3>
+          <div class="chips">
+            <span class="chip">Firebase Auth</span><span class="chip">Firestore</span>
+            <span class="chip">Room</span><span class="chip">DataStore</span>
+            <span class="chip">Retrofit</span><span class="chip">Moshi</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Android & Tools</h3>
+          <div class="chips">
+            <span class="chip">WorkManager</span><span class="chip">CameraX</span>
+            <span class="chip">ML Kit</span><span class="chip">Google Maps SDK</span>
+            <span class="chip">Git & GitHub</span><span class="chip">Android Studio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projekte -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label mono">03. Projekte</div>
+      <h2>Was ich gebaut habe</h2>
+      <div class="projects">
+
+        <article class="project featured reveal">
+          <div class="project-top">
+            <div class="project-icon">🍽️</div>
+            <span class="badge">Abschlussprojekt</span>
+          </div>
+          <h3>Tableo – Tisch-Bestellsystem</h3>
+          <p>Bestell-App für Restaurants und Shisha-Bars. Gäste wählen ein Partner-Restaurant, sehen die Speisekarte und bestellen direkt an den Tisch oder zum Abholen. Das Personal hat alle Bestellungen im Blick – ohne ständig nachfragen zu müssen.</p>
+          <ul>
+            <li>Restaurant-Übersicht mit mehreren Partner-Restaurants</li>
+            <li>Speisekarte mit Mengenauswahl, Warenkorb und Bestellbestätigung</li>
+            <li>Auswahl „am Tisch“ oder „Vorbestellung zum Abholen“</li>
+            <li>Getrennte Logins für Gäste und Personal, Bezahl-Status pro Bestellung</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
+            <span class="chip">MVVM</span><span class="chip">Firebase</span>
+            <span class="chip">Typisierte Navigation</span>
+          </div>
+          <!-- Link zum Repo eintragen -->
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top"><div class="project-icon">🥫</div></div>
+          <h3>Vorratsheld</h3>
+          <p>Vorrats-App für den Haushalt: Produkte per Barcode scannen, Daten automatisch laden lassen und rechtzeitig vor dem Ablaufdatum erinnert werden.</p>
+          <div class="chips">
+            <span class="chip">Firebase Auth</span><span class="chip">Firestore</span>
+            <span class="chip">CameraX</span><span class="chip">ML Kit</span>
+            <span class="chip">Open Food Facts API</span><span class="chip">WorkManager</span>
+          </div>
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top"><div class="project-icon">🩺</div></div>
+          <h3>CareConnect</h3>
+          <p>App für Patienten und Mitarbeitende: Termine verwalten und die Kommunikation zwischen beiden Seiten vereinfachen – mit eigenen Bereichen je nach Rolle.</p>
+          <div class="chips">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
+            <span class="chip">Firebase</span><span class="chip">Rollen-Login</span>
+          </div>
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top"><div class="project-icon">🏃</div></div>
+          <h3>SyntaxFitness</h3>
+          <p>Fitness-Tracker, der Läufe auf der Karte aufzeichnet und mit Erinnerungen im Hintergrund zum Training motiviert.</p>
+          <div class="chips">
+            <span class="chip">Google Maps SDK</span><span class="chip">Standort</span>
+            <span class="chip">WorkManager</span><span class="chip">Notifications</span>
+          </div>
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top"><div class="project-icon">🥗</div></div>
+          <h3>The Veggie App</h3>
+          <p>Rezept-Browser mit Daten aus TheMealDB, Favoriten-Liste mit Room und Tags als Chips. Übersetzt ins Deutsche und Französische, mit Compose-UI-Tests.</p>
+          <div class="chips">
+            <span class="chip">Retrofit</span><span class="chip">Room</span>
+            <span class="chip">Koin</span><span class="chip">UI-Tests</span>
+          </div>
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-top"><div class="project-icon">🎵</div></div>
+          <h3>Songify</h3>
+          <p>Musik-Player mit eigenem Dark-Theme „Midnight Violet“, Suche im Bottom Sheet und Player-Steuerung mit Fortschrittsanzeige.</p>
+          <div class="chips">
+            <span class="chip">Jetpack Compose</span><span class="chip">Material 3</span>
+            <span class="chip">Custom Theme</span>
+          </div>
+          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Werdegang -->
+  <section id="path">
+    <div class="container">
+      <div class="section-label mono">04. Werdegang</div>
+      <h2>Mein Weg</h2>
+      <div class="timeline reveal">
+        <div class="step">
+          <div class="when mono">2026</div>
+          <h3>Abschlussprojekt „Tableo“</h3>
+          <p>Eigene App von der Idee bis zur Präsentation – mit Code Reviews, README und sauberer Architektur.</p>
+        </div>
+        <div class="step">
+          <div class="when mono">2026</div>
+          <h3>Weiterbildung Android-Entwicklung – Syntax Institut</h3>
+          <p>Kotlin, Jetpack Compose, MVVM, Room, Firebase, Retrofit, Git – jede Woche ein neues Projekt nach Tickets im Team-Workflow.</p>
+        </div>
+        <!-- Weitere Stationen (Ausbildung, Jobs) hier ergänzen -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-label mono">05. Kontakt</div>
+      <h2>Lass uns sprechen</h2>
+      <p>Ich freue mich über Nachrichten zu offenen Stellen, Projekten oder einfach einen kurzen Austausch.</p>
+      <div class="contact-links">
+        <a href="mailto:Ali.development@hotmail.com" class="btn btn-primary">E-Mail schreiben</a>
+        <a href="https://github.com/Ali313" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+        <!-- LinkedIn-Link eintragen -->
+        <a href="https://www.linkedin.com/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Ali Chehab · Gebaut mit HTML & CSS</div>
+  </footer>
+
+  <script>
+    // Mobiles Menü
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+
+    // Abschnitte beim Scrollen einblenden
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
