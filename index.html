@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali Chehab – Android Developer</title>
-  <meta name="description" content="Portfolio von Ali Chehab – Android-Entwickler mit Kotlin und Jetpack Compose.">
+  <title>Ali Chehab – Mobile Developer (Android & iOS)</title>
+  <meta name="description" content="Portfolio von Ali Chehab – Mobile-Entwickler für Android, iOS und Kotlin Multiplatform.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,6 +18,8 @@
       --muted: #8b98a8;
       --accent: #3ddc84;
       --accent-dim: rgba(61, 220, 132, 0.12);
+      --kmp: #a97bff;
+      --ios: #4da3ff;
       --radius: 14px;
       --max: 1100px;
     }
@@ -78,7 +80,7 @@
     }
     .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; }
     .hero h1 .accent { color: var(--accent); }
-    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 620px; margin: 22px 0 34px; }
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 640px; margin: 22px 0 34px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
     /* Sections */
@@ -118,6 +120,37 @@
       background: var(--bg); border: 1px solid var(--border); color: var(--text);
     }
 
+    /* Projekt-Kategorien */
+    .cat-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: -16px 0 48px; }
+    .cat-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--card);
+      font-size: 0.9rem; font-weight: 600; transition: border-color .2s;
+    }
+    .cat-pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+    .cat-pill:hover { border-color: var(--c); }
+
+    .category { --c: var(--accent); margin-bottom: 64px; }
+    .category:last-child { margin-bottom: 0; }
+    .category.kmp { --c: var(--kmp); }
+    .category.android { --c: var(--accent); }
+    .category.ios { --c: var(--ios); }
+    .cat-head {
+      display: flex; align-items: center; gap: 14px;
+      padding-bottom: 16px; margin-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-icon {
+      width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; color: var(--c);
+      background: color-mix(in srgb, var(--c) 14%, transparent);
+    }
+    .cat-head h3 { font-size: 1.4rem; font-weight: 800; }
+    .cat-head p { color: var(--muted); font-size: 0.92rem; }
+    .cat-count { margin-left: auto; color: var(--c); font-size: 0.85rem; white-space: nowrap; }
+
     /* Projekte */
     .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
     .project {
@@ -125,21 +158,24 @@
       padding: 26px; display: flex; flex-direction: column;
       transition: transform .2s, border-color .2s;
     }
-    .project:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .project.featured { grid-column: 1 / -1; background: linear-gradient(135deg, #17251f 0%, var(--card) 60%); }
+    .project:hover { transform: translateY(-4px); border-color: var(--c); }
+    .project.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--c) 9%, var(--card)) 0%, var(--card) 60%);
+    }
     .project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
     .project-icon {
       width: 44px; height: 44px; border-radius: 12px;
-      background: var(--accent-dim); color: var(--accent);
+      background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--c);
       display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
     }
-    .badge { font-size: 0.75rem; color: var(--accent); border: 1px solid var(--accent); padding: 3px 10px; border-radius: 999px; }
+    .badge { font-size: 0.75rem; color: var(--c); border: 1px solid var(--c); padding: 3px 10px; border-radius: 999px; }
     .project h3 { font-size: 1.25rem; margin-bottom: 8px; }
     .project p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; flex-grow: 1; }
     .project ul { color: var(--muted); font-size: 0.92rem; margin: 0 0 18px 18px; }
     .project ul li { margin-bottom: 4px; }
     .project .chips { margin-bottom: 18px; }
-    .project-link { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
+    .project-link { color: var(--c); font-weight: 600; font-size: 0.92rem; }
     .project-link:hover { text-decoration: underline; }
 
     /* Werdegang */
@@ -177,6 +213,7 @@
       .about { grid-template-columns: 1fr; gap: 32px; }
       .photo { width: 220px; height: 260px; }
       .projects { grid-template-columns: 1fr; }
+      .cat-count { display: none; }
       .hero { padding: 70px 0 60px; }
       section { padding: 64px 0; }
     }
@@ -206,8 +243,8 @@
   <header class="hero">
     <div class="container">
       <span class="tag mono">// offen für neue Herausforderungen</span>
-      <h1>Hi, ich bin Ali.<br><span class="accent">Android Developer.</span></h1>
-      <p>Ich entwickle native Android-Apps mit Kotlin und Jetpack Compose – von der Idee über die Architektur bis zur fertigen App mit Firebase, Room und REST-APIs.</p>
+      <h1>Hi, ich bin Ali.<br><span class="accent">Mobile Developer.</span></h1>
+      <p>Ich entwickle Apps für Android und iOS – nativ mit Kotlin, Jetpack Compose und Swift oder plattformübergreifend mit Kotlin Multiplatform.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">Projekte ansehen →</a>
         <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf (PDF)</a>
@@ -226,12 +263,12 @@
           <div class="initials">AC</div>
         </div>
         <div class="about-text">
-          <p>Ich habe meine Weiterbildung zum <strong>Android-Entwickler am Syntax Institut</strong> abgeschlossen und dort in kurzer Zeit eine Menge Apps gebaut – von kleinen Wochenprojekten bis zu meinem Abschlussprojekt <strong>Tableo</strong>.</p>
+          <p>Ich habe meine Weiterbildung zum <strong>App-Entwickler am Syntax Institut</strong> abgeschlossen. Dabei habe ich <strong>Android</strong> und <strong>iOS</strong> gelernt und in kurzer Zeit eine Menge Apps gebaut – von kleinen Wochenprojekten bis zu meinem Abschlussprojekt <strong>Tableo</strong>.</p>
           <p>Mir ist wichtig, dass eine App nicht nur funktioniert, sondern sauber aufgebaut ist: <strong>MVVM, Repository-Pattern</strong>, typisierte Navigation und eine durchdachte Fehlerbehandlung gehören für mich dazu.</p>
           <p>Am meisten Spaß macht mir, Ideen aus dem Alltag in Apps umzusetzen, die echten Nutzen haben – zum Beispiel weniger Stress für Restaurant-Personal oder weniger weggeworfene Lebensmittel zu Hause.</p>
           <div class="facts">
-            <div class="fact"><div class="label">Fokus</div><div class="value">Android / Kotlin</div></div>
-            <div class="fact"><div class="label">UI</div><div class="value">Jetpack Compose</div></div>
+            <div class="fact"><div class="label">Plattformen</div><div class="value">Android, iOS, KMP</div></div>
+            <div class="fact"><div class="label">UI</div><div class="value">Compose & SwiftUI</div></div>
             <div class="fact"><div class="label">Sprachen</div><div class="value">Deutsch, Englisch</div></div>
             <div class="fact"><div class="label">Status</div><div class="value">Verfügbar</div></div>
           </div>
@@ -247,34 +284,37 @@
       <h2>Womit ich arbeite</h2>
       <div class="skills reveal">
         <div class="skill-group">
-          <h3>Sprache & UI</h3>
+          <h3>Kotlin Multiplatform</h3>
+          <div class="chips">
+            <span class="chip">Kotlin Multiplatform</span><span class="chip">Compose Multiplatform</span>
+            <span class="chip">Ktor</span><span class="chip">Koin</span>
+            <span class="chip">Firebase (GitLive)</span><span class="chip">Shared Code</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Android</h3>
           <div class="chips">
             <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
-            <span class="chip">Material 3</span><span class="chip">Compose Navigation</span>
-            <span class="chip">Coroutines & Flow</span>
+            <span class="chip">Material 3</span><span class="chip">Coroutines & Flow</span>
+            <span class="chip">Room</span><span class="chip">WorkManager</span>
+            <span class="chip">CameraX</span><span class="chip">ML Kit</span>
           </div>
         </div>
         <div class="skill-group">
-          <h3>Architektur</h3>
+          <h3>iOS</h3>
+          <div class="chips">
+            <span class="chip">Swift</span><span class="chip">SwiftUI</span>
+            <span class="chip">MapKit</span><span class="chip">Vision</span>
+            <span class="chip">CoreLocation</span><span class="chip">Xcode</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Architektur & Backend</h3>
           <div class="chips">
             <span class="chip">MVVM</span><span class="chip">Repository-Pattern</span>
-            <span class="chip">Koin (DI)</span><span class="chip">Clean Code</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Daten & Backend</h3>
-          <div class="chips">
-            <span class="chip">Firebase Auth</span><span class="chip">Firestore</span>
-            <span class="chip">Room</span><span class="chip">DataStore</span>
-            <span class="chip">Retrofit</span><span class="chip">Moshi</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Android & Tools</h3>
-          <div class="chips">
-            <span class="chip">WorkManager</span><span class="chip">CameraX</span>
-            <span class="chip">ML Kit</span><span class="chip">Google Maps SDK</span>
-            <span class="chip">Git & GitHub</span><span class="chip">Android Studio</span>
+            <span class="chip">Koin (DI)</span><span class="chip">Firebase</span>
+            <span class="chip">Retrofit</span><span class="chip">REST-APIs</span>
+            <span class="chip">Git & GitHub</span>
           </div>
         </div>
       </div>
@@ -286,87 +326,184 @@
     <div class="container">
       <div class="section-label mono">03. Projekte</div>
       <h2>Was ich gebaut habe</h2>
-      <div class="projects">
 
-        <article class="project featured reveal">
-          <div class="project-top">
-            <div class="project-icon">🍽️</div>
-            <span class="badge">Abschlussprojekt</span>
-          </div>
-          <h3>Tableo – Tisch-Bestellsystem</h3>
-          <p>Bestell-App für Restaurants und Shisha-Bars. Gäste wählen ein Partner-Restaurant, sehen die Speisekarte und bestellen direkt an den Tisch oder zum Abholen. Das Personal hat alle Bestellungen im Blick – ohne ständig nachfragen zu müssen.</p>
-          <ul>
-            <li>Restaurant-Übersicht mit mehreren Partner-Restaurants</li>
-            <li>Speisekarte mit Mengenauswahl, Warenkorb und Bestellbestätigung</li>
-            <li>Auswahl „am Tisch“ oder „Vorbestellung zum Abholen“</li>
-            <li>Getrennte Logins für Gäste und Personal, Bezahl-Status pro Bestellung</li>
-          </ul>
-          <div class="chips">
-            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
-            <span class="chip">MVVM</span><span class="chip">Firebase</span>
-            <span class="chip">Typisierte Navigation</span>
-          </div>
-          <!-- Link zum Repo eintragen -->
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top"><div class="project-icon">🥫</div></div>
-          <h3>Vorratsheld</h3>
-          <p>Vorrats-App für den Haushalt: Produkte per Barcode scannen, Daten automatisch laden lassen und rechtzeitig vor dem Ablaufdatum erinnert werden.</p>
-          <div class="chips">
-            <span class="chip">Firebase Auth</span><span class="chip">Firestore</span>
-            <span class="chip">CameraX</span><span class="chip">ML Kit</span>
-            <span class="chip">Open Food Facts API</span><span class="chip">WorkManager</span>
-          </div>
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top"><div class="project-icon">🩺</div></div>
-          <h3>CareConnect</h3>
-          <p>App für Patienten und Mitarbeitende: Termine verwalten und die Kommunikation zwischen beiden Seiten vereinfachen – mit eigenen Bereichen je nach Rolle.</p>
-          <div class="chips">
-            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
-            <span class="chip">Firebase</span><span class="chip">Rollen-Login</span>
-          </div>
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top"><div class="project-icon">🏃</div></div>
-          <h3>SyntaxFitness</h3>
-          <p>Fitness-Tracker, der Läufe auf der Karte aufzeichnet und mit Erinnerungen im Hintergrund zum Training motiviert.</p>
-          <div class="chips">
-            <span class="chip">Google Maps SDK</span><span class="chip">Standort</span>
-            <span class="chip">WorkManager</span><span class="chip">Notifications</span>
-          </div>
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top"><div class="project-icon">🥗</div></div>
-          <h3>The Veggie App</h3>
-          <p>Rezept-Browser mit Daten aus TheMealDB, Favoriten-Liste mit Room und Tags als Chips. Übersetzt ins Deutsche und Französische, mit Compose-UI-Tests.</p>
-          <div class="chips">
-            <span class="chip">Retrofit</span><span class="chip">Room</span>
-            <span class="chip">Koin</span><span class="chip">UI-Tests</span>
-          </div>
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
-        <article class="project reveal">
-          <div class="project-top"><div class="project-icon">🎵</div></div>
-          <h3>Songify</h3>
-          <p>Musik-Player mit eigenem Dark-Theme „Midnight Violet“, Suche im Bottom Sheet und Player-Steuerung mit Fortschrittsanzeige.</p>
-          <div class="chips">
-            <span class="chip">Jetpack Compose</span><span class="chip">Material 3</span>
-            <span class="chip">Custom Theme</span>
-          </div>
-          <a href="https://github.com/Ali313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
-        </article>
-
+      <div class="cat-nav">
+        <a href="#cat-kmp" class="cat-pill" style="--c: var(--kmp)"><span class="dot"></span>Kotlin Multiplatform</a>
+        <a href="#cat-android" class="cat-pill" style="--c: var(--accent)"><span class="dot"></span>Android</a>
+        <a href="#cat-ios" class="cat-pill" style="--c: var(--ios)"><span class="dot"></span>iOS</a>
       </div>
+
+      <!-- Kotlin Multiplatform -->
+      <div class="category kmp" id="cat-kmp">
+        <div class="cat-head">
+          <div class="cat-icon">◆</div>
+          <div>
+            <h3>Kotlin Multiplatform</h3>
+            <p>Eine Codebasis für Android und iOS</p>
+          </div>
+          <span class="cat-count mono" data-count></span>
+        </div>
+        <div class="projects">
+
+          <article class="project featured reveal">
+            <div class="project-top">
+              <div class="project-icon">🍽️</div>
+              <span class="badge">Android + iOS</span>
+            </div>
+            <h3>Tableo</h3>
+            <p>Eine App, drei Rollen, zwei Plattformen: Gäste bestellen am Tisch, zum Abholen oder per Lieferung, das Personal arbeitet die Bestellungen im Dashboard ab und Fahrer liefern mit Live-Standort aus. Android und iPhone teilen sich fast den gesamten Code.</p>
+            <ul>
+              <li>Bestellungen mit Live-Status und Live-Tracking des Fahrers</li>
+              <li>Speisekarte mit Preisen in Fremdwährung über eine Wechselkurs-API</li>
+              <li>10 Sprachen und 24 Unit-Tests</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Compose Multiplatform</span><span class="chip">Ktor</span>
+              <span class="chip">Koin</span><span class="chip">Firebase</span>
+              <span class="chip">MVVM + Repository</span>
+            </div>
+            <a href="https://github.com/Ali-C313/Tableo-KMP" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <h3>Vorratsheld</h3>
+            <p>Vorrat per Barcode scannen, das Mindesthaltbarkeitsdatum direkt von der Packung ablesen und rechtzeitig erinnert werden. Plattform-Code nur dort, wo es nötig ist: ML Kit auf Android, Apple Vision auf iOS.</p>
+            <div class="chips">
+              <span class="chip">Compose Multiplatform</span><span class="chip">Ktor</span>
+              <span class="chip">Open Food Facts</span><span class="chip">ML Kit / Vision</span>
+              <span class="chip">Biometrie</span>
+            </div>
+            <a href="https://github.com/Ali-C313/Vorratsheld" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <h3>CareConnect</h3>
+            <p>Bringt Pflegedienste, Arztpraxen, Kliniken und Patienten in einer App zusammen. Neubau meiner iOS-App: Logik und Oberfläche einmal in Kotlin, nativ auf Android und iOS – rund 300 Kotlin-Dateien.</p>
+            <div class="chips">
+              <span class="chip">Compose Multiplatform</span><span class="chip">Koin</span>
+              <span class="chip">Firebase</span><span class="chip">Live-Tracking</span>
+            </div>
+            <a href="https://github.com/Ali-C313/CareConnect_Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Android -->
+      <div class="category android" id="cat-android">
+        <div class="cat-head">
+          <div class="cat-icon">🤖</div>
+          <div>
+            <h3>Android</h3>
+            <p>Native Apps mit Kotlin und Jetpack Compose</p>
+          </div>
+          <span class="cat-count mono" data-count></span>
+        </div>
+        <div class="projects">
+
+          <article class="project featured reveal">
+            <div class="project-top">
+              <div class="project-icon">🍽️</div>
+              <span class="badge">Abschlussprojekt</span>
+            </div>
+            <h3>Tableo – Bestell-App</h3>
+            <p>Bestell-App für Restaurants und Shisha-Bars mit drei Rollen: Gäste bestellen, das Personal bereitet zu, Fahrer liefern aus. Jede Änderung ist sofort auf allen Geräten zu sehen.</p>
+            <ul>
+              <li>Live-Status über Firestore-Listener – „Fertig“ in der Küche sieht der Gast sofort</li>
+              <li>Fahrer-Tracking auf Google Maps mit Ankunftszeit</li>
+              <li>Rollenerkennung nach dem Login, 10 Sprachen inklusive Arabisch (RTL)</li>
+            </ul>
+            <div class="chips">
+              <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span>
+              <span class="chip">Firebase</span><span class="chip">Google Maps</span>
+              <span class="chip">MVVM</span>
+            </div>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <h3>Vorratsheld</h3>
+            <p>Verwaltet den Vorrat zu Hause – vom Barcode-Scan bis zur Erinnerung, bevor etwas im Müll landet. Lieblingsprodukte landen automatisch auf der Einkaufsliste.</p>
+            <div class="chips">
+              <span class="chip">Jetpack Compose</span><span class="chip">Firebase</span>
+              <span class="chip">CameraX</span><span class="chip">ML Kit</span>
+              <span class="chip">WorkManager</span>
+            </div>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <h3>CareConnect</h3>
+            <p>All-in-One-App für die ambulante Pflege – von der Verordnung über den Einsatz bis zur Live-Ankunft an der Haustür, mit Routing über OSRM.</p>
+            <div class="chips">
+              <span class="chip">Jetpack Compose</span><span class="chip">Koin</span>
+              <span class="chip">Retrofit + Moshi</span><span class="chip">Firebase</span>
+            </div>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- iOS -->
+      <div class="category ios" id="cat-ios">
+        <div class="cat-head">
+          <div class="cat-icon">🍏</div>
+          <div>
+            <h3>iOS</h3>
+            <p>Native Apps mit Swift und SwiftUI</p>
+          </div>
+          <span class="cat-count mono" data-count></span>
+        </div>
+        <div class="projects">
+
+          <article class="project featured reveal">
+            <div class="project-top">
+              <div class="project-icon">🍽️</div>
+              <span class="badge">SwiftUI</span>
+            </div>
+            <h3>Tableo</h3>
+            <p>Bestellen am Tisch, zum Abholen oder per Lieferung – als native iOS-App. Gäste bestellen, das Personal arbeitet live ab und Fahrer liefern mit Live-Tracking über MapKit aus.</p>
+            <div class="chips">
+              <span class="chip">Swift</span><span class="chip">SwiftUI</span>
+              <span class="chip">Firebase</span><span class="chip">MapKit</span>
+              <span class="chip">10 Sprachen</span>
+            </div>
+            <a href="https://github.com/Ali-C313/Tableo-IOS" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <h3>Vorratsheld</h3>
+            <p>Produkt scannen, Mindesthaltbarkeitsdatum mit der Kamera ablesen und rechtzeitig erinnert werden – mit Einkaufsliste und App-Sperre.</p>
+            <div class="chips">
+              <span class="chip">SwiftUI</span><span class="chip">Firebase</span>
+              <span class="chip">MVVM</span><span class="chip">Vision</span>
+            </div>
+            <a href="https://github.com/Ali-C313/Vorratsheld-iOS" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <h3>CareConnect</h3>
+            <p>Verbindet Pflegedienst, Praxis und Patient in Echtzeit: Aufträge planen, Einsätze live verfolgen und Leistungen digital unterschreiben lassen.</p>
+            <div class="chips">
+              <span class="chip">SwiftUI</span><span class="chip">Observation</span>
+              <span class="chip">Firebase</span><span class="chip">MapKit</span>
+            </div>
+            <a href="https://github.com/Ali-C313/CareConnect-IOS" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+          </article>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -377,14 +514,14 @@
       <h2>Mein Weg</h2>
       <div class="timeline reveal">
         <div class="step">
-          <div class="when mono">2026</div>
+          <div class="when mono">09-2026</div>
           <h3>Abschlussprojekt „Tableo“</h3>
           <p>Eigene App von der Idee bis zur Präsentation – mit Code Reviews, README und sauberer Architektur.</p>
         </div>
         <div class="step">
           <div class="when mono">2026</div>
-          <h3>Weiterbildung Android-Entwicklung – Syntax Institut</h3>
-          <p>Kotlin, Jetpack Compose, MVVM, Room, Firebase, Retrofit, Git – jede Woche ein neues Projekt nach Tickets im Team-Workflow.</p>
+          <h3>Weiterbildung App-Entwicklung – Syntax Institut</h3>
+          <p>Android mit Kotlin und Jetpack Compose, iOS mit Swift, dazu Kotlin Multiplatform, MVVM, Room, Firebase, Retrofit und Git – jede Woche ein neues Projekt nach Tickets im Team-Workflow.</p>
         </div>
         <!-- Weitere Stationen (Ausbildung, Jobs) hier ergänzen -->
       </div>
@@ -399,9 +536,8 @@
       <p>Ich freue mich über Nachrichten zu offenen Stellen, Projekten oder einfach einen kurzen Austausch.</p>
       <div class="contact-links">
         <a href="mailto:Ali.development@hotmail.com" class="btn btn-primary">E-Mail schreiben</a>
-        <a href="https://github.com/Ali313" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
-        <!-- LinkedIn-Link eintragen -->
-        <a href="https://www.linkedin.com/" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ali-C313" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ali-chehab" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
         <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf</a>
       </div>
     </div>
@@ -419,6 +555,12 @@
     navLinks.querySelectorAll('a').forEach(a =>
       a.addEventListener('click', () => navLinks.classList.remove('open'))
     );
+
+    // Anzahl Projekte pro Kategorie
+    document.querySelectorAll('.category').forEach(cat => {
+      const n = cat.querySelectorAll('.project').length;
+      cat.querySelector('[data-count]').textContent = n + (n === 1 ? ' Projekt' : ' Projekte');
+    });
 
     // Abschnitte beim Scrollen einblenden
     const observer = new IntersectionObserver(entries => {
