@@ -152,7 +152,7 @@
     .cat-count { margin-left: auto; color: var(--c); font-size: 0.85rem; white-space: nowrap; }
 
     /* Projekte */
-    .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 22px; }
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
     .project {
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 26px; display: flex; flex-direction: column;
@@ -189,6 +189,30 @@
     .step .when { color: var(--accent); font-size: 0.85rem; }
     .step h3 { font-size: 1.1rem; margin: 2px 0 6px; }
     .step p { color: var(--muted); }
+
+    /* Zertifikate */
+    .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+    .cert {
+      --c: var(--accent);
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px; display: flex; flex-direction: column;
+      border-top: 3px solid var(--c);
+    }
+    .cert.ios { --c: var(--ios); }
+    .cert-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .cert-logo {
+      width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+      background: #0b4d8c; color: #fff; font-weight: 800; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center; letter-spacing: 0.02em;
+    }
+    .cert h3 { font-size: 1.2rem; line-height: 1.3; }
+    .cert .issuer { color: var(--muted); font-size: 0.88rem; }
+    .cert-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 16px; font-size: 0.88rem; }
+    .cert-meta span { color: var(--muted); }
+    .cert-meta strong { color: var(--c); font-weight: 600; }
+    .cert .chips { margin-bottom: 22px; flex-grow: 1; align-content: flex-start; }
+    .cert-link { color: var(--c); font-weight: 600; font-size: 0.92rem; }
+    .cert-link:hover { text-decoration: underline; }
 
     /* Kontakt */
     .contact { text-align: center; }
@@ -234,6 +258,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projekte</a></li>
         <li><a href="#path">Werdegang</a></li>
+        <li><a href="#certs">Zertifikate</a></li>
         <li><a href="#contact">Kontakt</a></li>
       </ul>
     </div>
@@ -350,7 +375,7 @@
               <div class="project-icon">🍽️</div>
               <span class="badge">Android + iOS</span>
             </div>
-            <h3>Tableo-KMP</h3>
+            <h3>Tableo</h3>
             <p>Eine App, drei Rollen, zwei Plattformen: Gäste bestellen am Tisch, zum Abholen oder per Lieferung, das Personal arbeitet die Bestellungen im Dashboard ab und Fahrer liefern mit Live-Standort aus. Android und iPhone teilen sich fast den gesamten Code.</p>
             <ul>
               <li>Bestellungen mit Live-Status und Live-Tracking des Fahrers</li>
@@ -367,7 +392,7 @@
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🥫</div></div>
-            <h3>Vorratsheld-KMP</h3>
+            <h3>Vorratsheld</h3>
             <p>Vorrat per Barcode scannen, das Mindesthaltbarkeitsdatum direkt von der Packung ablesen und rechtzeitig erinnert werden. Plattform-Code nur dort, wo es nötig ist: ML Kit auf Android, Apple Vision auf iOS.</p>
             <div class="chips">
               <span class="chip">Compose Multiplatform</span><span class="chip">Ktor</span>
@@ -379,7 +404,7 @@
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🩺</div></div>
-            <h3>CareConnect-KMP</h3>
+            <h3>CareConnect</h3>
             <p>Bringt Pflegedienste, Arztpraxen, Kliniken und Patienten in einer App zusammen. Neubau meiner iOS-App: Logik und Oberfläche einmal in Kotlin, nativ auf Android und iOS – rund 300 Kotlin-Dateien.</p>
             <div class="chips">
               <span class="chip">Compose Multiplatform</span><span class="chip">Koin</span>
@@ -408,7 +433,7 @@
               <div class="project-icon">🍽️</div>
               <span class="badge">Abschlussprojekt</span>
             </div>
-            <h3>Tableo-Android</h3>
+            <h3>Tableo – Bestell-App</h3>
             <p>Bestell-App für Restaurants und Shisha-Bars mit drei Rollen: Gäste bestellen, das Personal bereitet zu, Fahrer liefern aus. Jede Änderung ist sofort auf allen Geräten zu sehen.</p>
             <ul>
               <li>Live-Status über Firestore-Listener – „Fertig“ in der Küche sieht der Gast sofort</li>
@@ -420,30 +445,33 @@
               <span class="chip">Firebase</span><span class="chip">Google Maps</span>
               <span class="chip">MVVM</span>
             </div>
-            <a href="https://github.com/Ali-C313/Tableo-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🥫</div></div>
-            <h3>Vorratsheld-Android</h3>
+            <h3>Vorratsheld</h3>
             <p>Verwaltet den Vorrat zu Hause – vom Barcode-Scan bis zur Erinnerung, bevor etwas im Müll landet. Lieblingsprodukte landen automatisch auf der Einkaufsliste.</p>
             <div class="chips">
               <span class="chip">Jetpack Compose</span><span class="chip">Firebase</span>
               <span class="chip">CameraX</span><span class="chip">ML Kit</span>
               <span class="chip">WorkManager</span>
             </div>
-            <a href="https://github.com/Ali-C313/Vorratsheld-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🩺</div></div>
-            <h3>CareConnect-Android</h3>
+            <h3>CareConnect</h3>
             <p>All-in-One-App für die ambulante Pflege – von der Verordnung über den Einsatz bis zur Live-Ankunft an der Haustür, mit Routing über OSRM.</p>
             <div class="chips">
               <span class="chip">Jetpack Compose</span><span class="chip">Koin</span>
               <span class="chip">Retrofit + Moshi</span><span class="chip">Firebase</span>
             </div>
-            <a href="https://github.com/Ali-C313/CareConnect-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
         </div>
@@ -466,7 +494,7 @@
               <div class="project-icon">🍽️</div>
               <span class="badge">SwiftUI</span>
             </div>
-            <h3>Tableo-IOS</h3>
+            <h3>Tableo</h3>
             <p>Bestellen am Tisch, zum Abholen oder per Lieferung – als native iOS-App. Gäste bestellen, das Personal arbeitet live ab und Fahrer liefern mit Live-Tracking über MapKit aus.</p>
             <div class="chips">
               <span class="chip">Swift</span><span class="chip">SwiftUI</span>
@@ -478,7 +506,7 @@
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🥫</div></div>
-            <h3>Vorratsheld-IOS</h3>
+            <h3>Vorratsheld</h3>
             <p>Produkt scannen, Mindesthaltbarkeitsdatum mit der Kamera ablesen und rechtzeitig erinnert werden – mit Einkaufsliste und App-Sperre.</p>
             <div class="chips">
               <span class="chip">SwiftUI</span><span class="chip">Firebase</span>
@@ -489,7 +517,7 @@
 
           <article class="project reveal">
             <div class="project-top"><div class="project-icon">🩺</div></div>
-            <h3>CareConnect-IOS</h3>
+            <h3>CareConnect</h3>
             <p>Verbindet Pflegedienst, Praxis und Patient in Echtzeit: Aufträge planen, Einsätze live verfolgen und Leistungen digital unterschreiben lassen.</p>
             <div class="chips">
               <span class="chip">SwiftUI</span><span class="chip">Observation</span>
@@ -511,16 +539,73 @@
       <h2>Mein Weg</h2>
       <div class="timeline reveal">
         <div class="step">
-          <div class="when mono">09-2026</div>
-          <h3>Abschlussprojekt „Tableo“</h3>
-          <p>Eigene App von der Idee bis zur Präsentation – mit Code Reviews, README und sauberer Architektur.</p>
+          <div class="when mono">10-2026</div>
+          <h3>Android App Developer IHK</h3>
+          <p>Zertifikat der IHK Akademie München und Oberbayern – Kotlin, Jetpack Compose, App-Architektur, Datenbanken, APIs und App-Testing.</p>
         </div>
         <div class="step">
-          <div class="when mono">2026</div>
-          <h3>Weiterbildung App-Entwicklung – Syntax Institut</h3>
-          <p>Android mit Kotlin und Jetpack Compose, iOS mit Swift, dazu Kotlin Multiplatform, MVVM, Room, Firebase, Retrofit und Git – jede Woche ein neues Projekt nach Tickets im Team-Workflow.</p>
+          <div class="when mono">09-2026</div>
+          <h3>Abschlussprojekt „Tableo“</h3>
+          <p>Eigene App von der Idee bis zur Präsentation – mit Code Reviews, README und sauberer Architektur. Später auch als iOS- und KMP-Version umgesetzt.</p>
+        </div>
+        <div class="step">
+          <div class="when mono">11-2025</div>
+          <h3>iOS App Developer IHK</h3>
+          <p>Zertifikat der IHK Akademie München und Oberbayern – Swift, SwiftUI, MVVM, Core Data, Netzwerke und Firebase in 290 Unterrichtsstunden.</p>
         </div>
         <!-- Weitere Stationen (Ausbildung, Jobs) hier ergänzen -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Zertifikate -->
+  <section id="certs">
+    <div class="container">
+      <div class="section-label mono">05. Zertifikate</div>
+      <h2>Abschlüsse</h2>
+      <div class="certs reveal">
+
+        <article class="cert">
+          <div class="cert-top">
+            <div class="cert-logo">IHK</div>
+            <div>
+              <h3>Android App Developer IHK</h3>
+              <div class="issuer">IHK Akademie München und Oberbayern</div>
+            </div>
+          </div>
+          <div class="cert-meta">
+            <span>Abgeschlossen: <strong>15.10.2026</strong></span>
+          </div>
+          <div class="chips">
+            <span class="chip">Grundlagen Android</span><span class="chip">Compose</span>
+            <span class="chip">App-Architektur & State</span><span class="chip">Theming & Animationen</span>
+            <span class="chip">Datenbanken</span><span class="chip">API</span>
+            <span class="chip">App-Testing</span>
+          </div>
+          <a href="assets/zertifikat-android.pdf" class="cert-link" target="_blank" rel="noopener">Zertifikat ansehen (PDF) →</a>
+        </article>
+
+        <article class="cert ios">
+          <div class="cert-top">
+            <div class="cert-logo">IHK</div>
+            <div>
+              <h3>iOS App Developer IHK</h3>
+              <div class="issuer">IHK Akademie München und Oberbayern</div>
+            </div>
+          </div>
+          <div class="cert-meta">
+            <span>Abgeschlossen: <strong>21.11.2025</strong></span>
+            <span>Umfang: <strong>290 Unterrichtsstunden</strong></span>
+          </div>
+          <div class="chips">
+            <span class="chip">Swift</span><span class="chip">SwiftUI</span>
+            <span class="chip">Navigation</span><span class="chip">MVVM & Property Wrapper</span>
+            <span class="chip">Core Data</span><span class="chip">Netzwerke</span>
+            <span class="chip">Repository Pattern</span><span class="chip">Firebase</span>
+          </div>
+          <a href="assets/zertifikat-ios.pdf" class="cert-link" target="_blank" rel="noopener">Zertifikat ansehen (PDF) →</a>
+        </article>
+
       </div>
     </div>
   </section>
@@ -528,13 +613,13 @@
   <!-- Kontakt -->
   <section id="contact" class="contact">
     <div class="container">
-      <div class="section-label mono">05. Kontakt</div>
+      <div class="section-label mono">06. Kontakt</div>
       <h2>Lass uns sprechen</h2>
       <p>Ich freue mich über Nachrichten zu offenen Stellen, Projekten oder einfach einen kurzen Austausch.</p>
       <div class="contact-links">
         <a href="mailto:Ali.development@hotmail.com" class="btn btn-primary">E-Mail schreiben</a>
         <a href="https://github.com/Ali-C313" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/ali-chehab-32a7a7364?utm_source=share_via&utm_content=profile&utm_medium=member_ios" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/ali-chehab" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
         <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf</a>
       </div>
     </div>
