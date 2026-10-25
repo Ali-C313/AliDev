@@ -169,6 +169,8 @@
       background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--c);
       display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
     }
+    .project-icon.app { width: 52px; height: 52px; background: none; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+    .project-icon.app img { width: 100%; height: 100%; object-fit: cover; }
     .badge { font-size: 0.75rem; color: var(--c); border: 1px solid var(--c); padding: 3px 10px; border-radius: 999px; }
     .project h3 { font-size: 1.25rem; margin-bottom: 8px; }
     .project p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; flex-grow: 1; }
@@ -272,7 +274,7 @@
       <p>Ich entwickle Apps für Android und iOS – nativ mit Kotlin, Jetpack Compose und Swift oder plattformübergreifend mit Kotlin Multiplatform.</p>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">Projekte ansehen →</a>
-        <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf (PDF)</a>
+        <a href="assets/lebenslauf.pdf" class="btn btn-outline" target="_blank" rel="noopener">Lebenslauf (PDF)</a>
       </div>
     </div>
   </header>
@@ -372,7 +374,7 @@
 
           <article class="project featured reveal">
             <div class="project-top">
-              <div class="project-icon">🍽️</div>
+              <div class="project-icon app"><img src="assets/icons/tableo.png" alt="App-Icon Tableo" loading="lazy"></div>
               <span class="badge">Android + iOS</span>
             </div>
             <h3>Tableo</h3>
@@ -391,7 +393,7 @@
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/vorratsheld.png" alt="App-Icon Vorratsheld" loading="lazy"></div></div>
             <h3>Vorratsheld</h3>
             <p>Vorrat per Barcode scannen, das Mindesthaltbarkeitsdatum direkt von der Packung ablesen und rechtzeitig erinnert werden. Plattform-Code nur dort, wo es nötig ist: ML Kit auf Android, Apple Vision auf iOS.</p>
             <div class="chips">
@@ -399,18 +401,18 @@
               <span class="chip">Open Food Facts</span><span class="chip">ML Kit / Vision</span>
               <span class="chip">Biometrie</span>
             </div>
-            <a href="https://github.com/Ali-C313/Vorratsheld-KMP" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <a href="https://github.com/Ali-C313/Vorratsheld" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/careconnect.png" alt="App-Icon CareConnect" loading="lazy"></div></div>
             <h3>CareConnect</h3>
             <p>Bringt Pflegedienste, Arztpraxen, Kliniken und Patienten in einer App zusammen. Neubau meiner iOS-App: Logik und Oberfläche einmal in Kotlin, nativ auf Android und iOS – rund 300 Kotlin-Dateien.</p>
             <div class="chips">
               <span class="chip">Compose Multiplatform</span><span class="chip">Koin</span>
               <span class="chip">Firebase</span><span class="chip">Live-Tracking</span>
             </div>
-            <a href="https://github.com/Ali-C313/CareConnect_Android-KMP" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <a href="https://github.com/Ali-C313/CareConnect_Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
         </div>
@@ -430,7 +432,7 @@
 
           <article class="project featured reveal">
             <div class="project-top">
-              <div class="project-icon">🍽️</div>
+              <div class="project-icon app"><img src="assets/icons/tableo.png" alt="App-Icon Tableo" loading="lazy"></div>
               <span class="badge">Abschlussprojekt</span>
             </div>
             <h3>Tableo – Bestell-App</h3>
@@ -445,11 +447,12 @@
               <span class="chip">Firebase</span><span class="chip">Google Maps</span>
               <span class="chip">MVVM</span>
             </div>
-            <a href="https://github.com/Ali-C313/Tableo-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/vorratsheld.png" alt="App-Icon Vorratsheld" loading="lazy"></div></div>
             <h3>Vorratsheld</h3>
             <p>Verwaltet den Vorrat zu Hause – vom Barcode-Scan bis zur Erinnerung, bevor etwas im Müll landet. Lieblingsprodukte landen automatisch auf der Einkaufsliste.</p>
             <div class="chips">
@@ -457,18 +460,20 @@
               <span class="chip">CameraX</span><span class="chip">ML Kit</span>
               <span class="chip">WorkManager</span>
             </div>
-            <a href="https://github.com/Ali-C313/Vorratsheld-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/careconnect.png" alt="App-Icon CareConnect" loading="lazy"></div></div>
             <h3>CareConnect</h3>
             <p>All-in-One-App für die ambulante Pflege – von der Verordnung über den Einsatz bis zur Live-Ankunft an der Haustür, mit Routing über OSRM.</p>
             <div class="chips">
               <span class="chip">Jetpack Compose</span><span class="chip">Koin</span>
               <span class="chip">Retrofit + Moshi</span><span class="chip">Firebase</span>
             </div>
-            <a href="https://github.com/Ali-C313/CareConnect-Android" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
+            <!-- Link zum Repo eintragen -->
+            <a href="https://github.com/Ali-C313" class="project-link" target="_blank" rel="noopener">Code auf GitHub →</a>
           </article>
 
         </div>
@@ -488,7 +493,7 @@
 
           <article class="project featured reveal">
             <div class="project-top">
-              <div class="project-icon">🍽️</div>
+              <div class="project-icon app"><img src="assets/icons/tableo.png" alt="App-Icon Tableo" loading="lazy"></div>
               <span class="badge">SwiftUI</span>
             </div>
             <h3>Tableo</h3>
@@ -502,7 +507,7 @@
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🥫</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/vorratsheld.png" alt="App-Icon Vorratsheld" loading="lazy"></div></div>
             <h3>Vorratsheld</h3>
             <p>Produkt scannen, Mindesthaltbarkeitsdatum mit der Kamera ablesen und rechtzeitig erinnert werden – mit Einkaufsliste und App-Sperre.</p>
             <div class="chips">
@@ -513,7 +518,7 @@
           </article>
 
           <article class="project reveal">
-            <div class="project-top"><div class="project-icon">🩺</div></div>
+            <div class="project-top"><div class="project-icon app"><img src="assets/icons/careconnect.png" alt="App-Icon CareConnect" loading="lazy"></div></div>
             <h3>CareConnect</h3>
             <p>Verbindet Pflegedienst, Praxis und Patient in Echtzeit: Aufträge planen, Einsätze live verfolgen und Leistungen digital unterschreiben lassen.</p>
             <div class="chips">
@@ -617,7 +622,7 @@
         <a href="mailto:Ali.development@hotmail.com" class="btn btn-primary">E-Mail schreiben</a>
         <a href="https://github.com/Ali-C313" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/ali-chehab" class="btn btn-outline" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="assets/lebenslauf.pdf" class="btn btn-outline" download>Lebenslauf</a>
+        <a href="assets/lebenslauf.pdf" class="btn btn-outline" target="_blank" rel="noopener">Lebenslauf</a>
       </div>
     </div>
   </section>
